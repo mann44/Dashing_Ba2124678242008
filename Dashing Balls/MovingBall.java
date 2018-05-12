@@ -8,6 +8,10 @@
 */
 
 import java.awt.*; //for Color
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MovingBall
 {
@@ -64,6 +68,10 @@ public class MovingBall
 	// Ball Size
 	//---------------
 	
+	public MovingBall() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getBallSizeX()
 	{
 		return ballSizeX;
@@ -387,6 +395,27 @@ public class MovingBall
 	//--------------------------------------------------------
 	
 	//Stalls the program so that program slows down
+	public void writeBalls (String fileName, ArrayList <Balls> ballList)
+	{
+		try
+		{
+			BufferedWriter outFile = new BufferedWriter(new FileWriter(fileName));
+			outFile.write (((Integer)ballList.size()).toString());
+			outFile.newLine ();
+			for (int i = 0; i < ballList.size(); i++)
+			{
+				outFile.write (ballList.get(i).getName());
+				outFile.newLine ();
+				outFile.write (ballList.get(i).toString());
+				outFile.newLine ();
+			}
+			outFile.close();
+		}
+		catch (IOException e)
+		{
+			System.out.println ("Error writing file " + fileName);
+		}
+	}
 
 	public void sleep(int i)
 	{
@@ -395,5 +424,10 @@ public class MovingBall
 			Thread.sleep (i); 
 		}
 		catch (Exception e) { }
+	}
+
+	public void writeBall(String filename) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,27 +1,31 @@
-/* 
-** Author: Robert Eisinger
-** Date: 8-23-08
+/* Author: Manthan Gajjar
+** Date: 04/30/2018
 **
-** Description: This class allows the tester class to run, 
-** because the tester class manipulates the MovingBall
-** class via this class. This is the panel that is directly
-** added to the JFrame
-**
+** Description: This class provides the main method and
+** the key listener and runs the game
 */
-
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.*;
 
-public class MovingBallPanel extends JPanel
+public class MovingBallPanel extends JPanel 
 {	
 	//--------------------------------------------------------
 	//					Declare private variables
 	//--------------------------------------------------------
 	
 	//This is the arraylist of balls
+	private JButton saveButton;
+	private JButton loadButton;
 	private ArrayList<MovingBall> mb;
 	
+
 	//This is the arraylist of the balls in 
 	//their original location. Througout the
 	//program, the positions of the balls in
@@ -40,6 +44,7 @@ public class MovingBallPanel extends JPanel
 	
 	//Width and Height
 	private final int APPLET_WIDTH, APPLET_HEIGHT;
+	
 	
 	
 	//--------------------------------------------------------
@@ -67,6 +72,7 @@ public class MovingBallPanel extends JPanel
 		APPLET_WIDTH = 640;
 		APPLET_HEIGHT = 480;
 		
+
 		//--------------------------------------------------------
 		//				 Set up the BASICS of the panel
 		//--------------------------------------------------------
@@ -95,7 +101,44 @@ public class MovingBallPanel extends JPanel
 	//--------------------------------------------------------
 	//							Graphics methods
 	//--------------------------------------------------------
-	
+	/*public void actionPerformed(ActionEvent e) 
+	{
+		if (e.getSource() == saveButton)
+		{
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Shape files", "sio");
+			chooser.setFileFilter(filter);
+			if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) 
+			{
+				String filename = chooser.getSelectedFile().getName();
+				MovingBall movingball = new MovingBall();
+				movingball.writeBall(filename,B);
+				//int period = filename.lastIndexOf('.');
+				//String extension = new String();
+				//if (period > 0)
+					//extension = filename.substring(period);
+				//if (!extension.equalsIgnoreCase(".sio"))
+					//filename += ".sio";
+				//ShapeIO shapeIO = new ShapeIO();
+				//shapeIO.writeShapes(filename, S);
+			}
+
+		}
+		if (e.getSource() == loadButton)
+		{
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Shape files", "sio");
+			chooser.setFileFilter(filter);
+			if (chooser.showOpenDialog(outside) == JFileChooser.APPROVE_OPTION)
+			{
+				String filename = chooser.getSelectedFile().getName();
+				//ShapeIO shapeIO = new ShapeIO();
+				//shapeIO.readShapes(filename, S);
+			}
+			repaint();
+		}
+
+	}*/
 	//This method is called initially and is 
 	//periodically called automatically
 	public void paintComponent(Graphics g)
@@ -118,12 +161,12 @@ public class MovingBallPanel extends JPanel
 		
 		//draw directions
 		g.setColor(Color.yellow);
-		g.drawString("Directions", 541, 410);
-		g.drawString("1.Use the up and down", 500,430);
-		g.drawString("arrows to move", 510,442);
-		g.drawString("2.Get the balls on their", 500, 457);
-		g.drawString("proper sides", 510, 470);
-		
+		g.drawString("Directions", 330, 450);
+		g.drawString("1.Use the up and down",390,450);
+		g.drawString("arrows to move", 512,450);
+		g.drawString("2.Get the balls on their",390, 470);
+		g.drawString("proper sides", 512, 470);
+
 		//draw level
 		g.setColor(Color.cyan);
 		g.drawString(("Level: " + level), 8, 472);
@@ -416,5 +459,6 @@ public class MovingBallPanel extends JPanel
 		}
 		catch (Exception e) { }
 	}
+	
 }
 		
